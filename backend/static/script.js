@@ -35,16 +35,18 @@ function updateStatus() {
 }
 
 async function createNewGame() {
+    // Получаем выбранный режим
+    const modeRadio = document.querySelector('input[name="mode"]:checked');
+    const mode = modeRadio ? modeRadio.value : 'vs_human';
+
     try {
-        const res = await fetch('/api/games', { method: 'POST' });
+        const res = await fetch('/api/games', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ mode: mode })
+        });
         const data = await res.json();
-        currentGameId = data.id;
-        board = data.board.split('');
-        currentPlayer = data.current_player;
-        gameStatus = data.status;
-        renderBoard();
-        updateStatus();
-        messageElement.textContent = '';
+        // ... остальное как было
     } catch (err) {
         messageElement.textContent = 'Ошибка создания игры';
     }

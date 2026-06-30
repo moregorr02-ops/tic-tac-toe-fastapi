@@ -3,7 +3,7 @@ from typing import Optional, List
 from datetime import datetime
 
 class GameCreate(BaseModel):
-    pass
+    mode: str = "vs_human"
 
 class MoveCreate(BaseModel):
     position: int
