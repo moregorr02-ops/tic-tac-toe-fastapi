@@ -12,6 +12,7 @@ class Game(Base):
     status = Column(String, default="ongoing")
     winner = Column(String, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
+    mode = Column(String, default="vs_human")   # <-- ЭТА СТРОКА ДОЛЖНА БЫТЬ
 
     moves = relationship("Move", back_populates="game")
 

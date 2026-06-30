@@ -42,11 +42,24 @@ async function createNewGame() {
     try {
         const res = await fetch('/api/games', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify({ mode: mode })
         });
+        if (!res.ok) {
+            const err = await res.json();
+            messageElement.textContent = err.detail || 'Ошибка создания игры';
+            return;
+        }
         const data = await res.json();
-        // ... остальное как было
+        currentGameId = data.id;
+        board = data.board.split('');
+        currentPlayer = data.current_player;
+        gameStatus = data.status;
+        renderBoard();
+        updateStatus();
+        messageElement.textContent = '';
     } catch (err) {
         messageElement.textContent = 'Ошибка создания игры';
     }
