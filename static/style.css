@@ -1,0 +1,62 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background: #f0f2f5;
+}
+#app {
+    text-align: center;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+#board {
+    display: grid;
+    grid-template-columns: repeat(3, 80px);
+    grid-gap: 5px;
+    margin: 20px auto;
+    justify-content: center;
+}
+.cell {
+    width: 80px;
+    height: 80px;
+    background: #e9ecef;
+    border: none;
+    border-radius: 8px;
+    font-size: 2.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.cell:hover:not(.disabled) {
+    background: #dee2e6;
+}
+.cell.disabled {
+    cursor: default;
+    opacity: 0.8;
+}
+#game-info {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+button {
+    padding: 10px 24px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    background: #007bff;
+    color: white;
+    cursor: pointer;
+    margin-top: 10px;
+}
+button:hover {
+    background: #0056b3;
+}
+#message {
+    margin-top: 10px;
+    font-weight: bold;
+}
